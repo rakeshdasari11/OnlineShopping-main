@@ -247,6 +247,10 @@
   display: flex;
   align-items: center;
   gap: 12px;
+   color: #298ed2;        /* Light blue */
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif; /* New font style */
+  letter-spacing: 1px;
 }
 
 .bestS h1 i {
@@ -402,4 +406,35 @@
 button:focus {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+
+.shopInfos-1 {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px 0;
+  flex-wrap: wrap;
+}
+
+.shop-item-1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.shop-item-1 i {
+  font-size: 22px;
+  color: #5d8ae8; /* light blue modern icon */
+}
+
+/* simple hover */
+.shop-item-1:hover {
+  color: #5d8ae8;
+  transform: translateY(-2px);
 }

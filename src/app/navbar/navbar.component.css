@@ -79,8 +79,12 @@ nav.navbar-solid {
 }
 
 .navbar-logo span {
-  color: var(--color-text);
+  /* color: var(--color-text);
+  font-weight: 700; */
+   color: #298ed2;        /* Light blue */
   font-weight: 700;
+  font-family: 'Poppins', sans-serif; /* New font style */
+  letter-spacing: 1px;
 }
 
 /* Account Buttons */

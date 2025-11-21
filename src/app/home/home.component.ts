@@ -6,6 +6,8 @@ import { BannerComponent } from './banner/banner.component';
 import { SeveralProductsComponent } from './several-products/several-products.component';
 import { ApiAreaService } from '../services/api-area.service';
 import { shopCards } from './shopCardData';
+import { ShopComponent } from '../shop/shop.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +17,8 @@ import { shopCards } from './shopCardData';
     RouterModule,
     BannerComponent,
     SeveralProductsComponent,
+    ShopComponent,
+    SidebarComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',

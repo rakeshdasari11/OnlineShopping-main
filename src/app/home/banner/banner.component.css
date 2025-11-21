@@ -15,7 +15,7 @@
 
 section {
   height: 550px;
-  background-image: url("/banner.jpg");
+  background-image: url("/Mainbanner.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -100,13 +100,13 @@ main {
   align-items: center;
   gap: 10px;
   width: fit-content;
-  box-shadow: 0 6px 20px rgba(245, 34, 45, 0.4);
+  box-shadow: 0 6px 20px rgba(14, 14, 14, 0.4);
   text-decoration: none;
 }
 
 .btn-shop:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(245, 34, 45, 0.6);
+  box-shadow: 0 8px 25px rgba(19, 18, 18, 0.6);
 }
 
 .btn-shop:active {
