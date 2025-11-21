@@ -1,0 +1,48 @@
+<!-- home.component.html -->
+
+<!-- Hero Banner -->
+<app-banner></app-banner>
+
+<!-- Shop Info Cards -->
+<section class="shopInfos">
+  @for (item of shopCards; track $index) {
+    <div class="card">
+      <div class="card-icon">
+        <i class="fas {{ item.icon }}"></i>
+      </div>
+      <h4>{{ item.header }}</h4>
+      <p>{{ item.description || 'Get the best experience with our services' }}</p>
+    </div>
+  }
+</section>
+
+<!-- New Arrivals Section -->
+<section class="arrivals">
+  <div class="arrivals-overlay"></div>
+  <main class="container">
+    <div class="infos">
+      <span class="arrivals-badge">NEW COLLECTION</span>
+      <h1>New Arrivals</h1>
+      <p>
+        Discover our latest collection of premium products. 
+        Handpicked items with exceptional quality and style.
+        Shop the newest trends before they're gone!
+      </p>
+      <button class="btn-explore" routerLink="/shop">
+        <i class="fas fa-arrow-right"></i>
+        Explore Now
+      </button>
+    </div>
+  </main>
+</section>
+
+<!-- Best Selling Section Header -->
+<div class="bestS">
+  <h1>
+    <i class="fas fa-fire"></i>
+    Best Selling
+  </h1>
+</div>
+
+<!-- Products Carousel -->
+<app-several-products></app-several-products>

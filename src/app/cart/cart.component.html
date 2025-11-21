@@ -1,0 +1,73 @@
+<div class="cart-wrapper">
+
+  <!-- Title -->
+  <h2 class="cart-title">
+    <i class="fas fa-shopping-cart"></i> Your Cart
+  </h2>
+
+  <!-- Empty Cart -->
+  @if (!cart || cart.products.length === 0) {
+    <div class="empty-cart">
+      <!-- <img src="/empty-cart.png" alt="Empty Cart" /> -->
+      <h3>Your cart is empty</h3>
+      <p>Start adding products to your cart.</p>
+      <button routerLink="/shop" class="btn-shop">Shop Now</button>
+    </div>
+  }
+
+  <!-- Cart List -->
+  @if (cart && cart.products.length > 0) {
+    <div class="cart-container">
+
+      <!-- Cart Items -->
+      <div class="cart-items">
+        @for (item of cart.products; track item.productId) {
+          <div class="cart-item">
+
+            <img [src]="getProductImage(item.productId)" alt="Product" />
+
+            <div class="item-info">
+              <h4>{{ getProductName(item.productId) }}</h4>
+              <p class="price">$ {{ item.pricePerQuantity }}</p>
+
+              <div class="quantity-control">
+                <button (click)="changeQuantity(item.productId, item.quantity - 1)">
+                  <i class="fas fa-minus"></i>
+                </button>
+
+                <span>{{ item.quantity }}</span>
+
+                <button (click)="changeQuantity(item.productId, item.quantity + 1)">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+            <button class="delete-btn" (click)="deleteItem(item.productId)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        }
+      </div>
+
+      <!-- Cart Summary -->
+      <aside class="cart-summary">
+        <h3>Order Summary</h3>
+
+        <div class="summary-row">
+          <span>Total Items:</span>
+          <strong>{{ cart.total.quantity }}</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Total Price:</span>
+          <strong>$ {{ cart.total.price.current }}</strong>
+        </div>
+
+        <button class="btn-checkout" (click)="checkout()">Checkout</button>
+
+        <button class="btn-clear" (click)="clearCart()">Clear Cart</button>
+      </aside>
+    </div>
+  }
+</div>

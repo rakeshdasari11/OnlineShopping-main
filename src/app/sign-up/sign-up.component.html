@@ -1,0 +1,219 @@
+<!-- sign-up.component.html -->
+<div class="signArea" (click)="everyWhere($event)">
+  <div class="card">
+    <!-- Form Side -->
+    <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+      <!-- Close Button -->
+      <!-- Close Button -->
+    <button class="close-btn" (click)="closeForm()">
+      <i class="fas fa-times"></i>
+    </button>
+
+      <!-- Header -->
+      <div class="form-header">
+        <h1>Create Account</h1>
+        <p>Join us and get started</p>
+      </div>
+
+      <!-- Alerts -->
+      @if (successRegister) {
+        <div class="alert alert-success">
+          <i class="fas fa-check-circle"></i>
+          <span>Account created successfully!</span>
+        </div>
+      }
+      @if (errorList.length > 0) {
+        <div class="alert alert-error">
+          <i class="fas fa-exclamation-circle"></i>
+          <div class="error-list">
+            @for (error of errorList; track $index) {
+              <p>{{ error }}</p>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- Personal Info -->
+      <div class="form-section">
+        <!-- <h3 class="section-title">Personal Information</h3> -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user"></i>
+              <input
+                type="text"
+                id="firstName"
+                formControlName="firstName"
+                placeholder="John"
+              />
+            </div>
+            @if (signUpForm.get('firstName')?.hasError('minlength')) {
+              <span class="error-text">Minimum 2 characters</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user"></i>
+              <input
+                type="text"
+                id="lastName"
+                formControlName="lastName"
+                placeholder="Doe"
+              />
+            </div>
+            @if (signUpForm.get('lastName')?.hasError('minlength')) {
+              <span class="error-text">Minimum 2 characters</span>
+            }
+          </div>
+        </div>
+
+           <!-- <div class="gender-group">
+          <label>Gender *</label>
+          <div class="radio-group">
+            <div class="radio-item">
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="MALE"
+                formControlName="gender"
+              />
+              <label for="male">
+                <i class="fas fa-mars"></i> Male
+              </label>
+            </div>
+            <div class="radio-item">
+              <input
+                type="radio"
+                id="female"
+                name="gender"
+                value="FEMALE"
+                formControlName="gender"
+              />
+              <label for="female">
+                <i class="fas fa-venus"></i> Female
+              </label>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-envelope"></i>
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                placeholder="john@example.com"
+              />
+            </div>
+            @if (signUpForm.get('email')?.hasError('email')) {
+              <span class="error-text">Please enter a valid email</span>
+            }
+          </div>
+
+          <!-- <div class="form-group">
+            <label for="age">Age *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-calendar"></i>
+              <input
+                type="number"
+                id="age"
+                formControlName="age"
+                placeholder="25"
+              />
+            </div>
+            @if (signUpForm.get('age')?.hasError('min')) {
+              <span class="error-text">Must be 18 or older</span>
+            }
+          </div> -->
+            <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-phone"></i>
+              <input
+                type="tel"
+                id="phone"
+                formControlName="phone"
+                placeholder="+995 555 000 000"
+              />
+            </div>
+          </div>
+<!-- 
+          <div class="form-group">
+            <label for="address">Address *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-map-marker-alt"></i>
+              <input
+                type="text"
+                id="address"
+                formControlName="address"
+                placeholder="123 Main Street"
+              />
+            </div>
+          </div>
+            <div class="form-group">
+            <label for="zipcode">ZIP Code *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-map-pin"></i>
+              <input
+                type="text"
+                id="zipcode"
+                formControlName="zipcode"
+                placeholder="12345"
+              />
+            </div>
+          </div> -->
+
+          <!-- <div class="form-group">
+            <label for="avatar">Profile Image URL *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-image"></i>
+              <input
+                type="url"
+                id="avatar"
+                formControlName="avatar"
+                placeholder="https://example.com/image.jpg"
+              />
+            </div>
+          </div> -->
+             <div class="form-group">
+            <label for="password">Password *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                id="password"
+                formControlName="password"
+                placeholder="Min. 7 characters"
+              />
+            </div>
+            @if (signUpForm.get('password')?.hasError('minlength')) {
+              <span class="error-text">Password must be at least 7 characters</span>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="btn-register"
+        [disabled]="signUpForm.invalid || isLoading"
+      >
+        @if (isLoading) {
+          <i class="fas fa-spinner fa-spin"></i>
+          <span>Creating Account...</span>
+        } @else {
+          <i class="fas fa-check"></i>
+          <span>Create Account</span>
+        }
+      </button>
+    </form>
+  </div>
+</div>

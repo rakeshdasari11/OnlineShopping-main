@@ -1,0 +1,79 @@
+<!-- several-products.component.html -->
+<section class="products-container">
+  <main class="products-grid">
+    @for (item of productList; track $index) {
+      <div class="product-card">
+        <!-- Badge -->
+        @if (item.stock <= 0) {
+          <div class="badge badge-stock">Out of Stock</div>
+        } @else {
+          <div class="badge badge-sale">
+            <i class="fas fa-tag"></i> Sale
+          </div>
+        }
+
+        <!-- Image Container -->
+        <div class="image-container">
+          <img
+            [src]="item.images[0].startsWith('https://alta.ge/') 
+              ? 'https://thumb.ac-illust.com/b1/b170870007dfa419295d949814474ab2_t.jpeg' 
+              : item.images[0]"
+            alt="{{ item.title }}"
+            class="product-image"
+          />
+          
+          <!-- Overlay Actions -->
+          <div class="overlay">
+            <button routerLink="/details/{{ item._id }}" class="btn-view">
+              <i class="fas fa-eye"></i>
+              <span>Quick View</span>
+            </button>
+            <button class="btn-cart" (click)="addToCart(item)">
+              <i class="fas fa-shopping-cart"></i>
+              <span>Add to Cart</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info">
+          <h4 class="product-title">{{ item.title }}</h4>
+          
+          <!-- Price -->
+          <div class="price-section">
+            <span class="current-price">${{ item.price.current }}</span>
+            <span class="original-price">${{ item.price.beforeDiscount }}</span>
+          </div>
+
+          <!-- Rating (optional) -->
+          <div class="rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+
+          <!-- Description -->
+          <p class="product-description">{{ item.description }}</p>
+
+          <!-- Stock Status -->
+          <div class="stock-status" [class.low-stock]="item.stock < 5 && item.stock > 0">
+            @if (item.stock > 0) {
+              <span class="in-stock">
+                <i class="fas fa-check-circle"></i>
+                In Stock ({{ item.stock }})
+              </span>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </main>
+
+  <!-- View More Button -->
+  <button routerLink="/shop" class="btn-view-more">
+    <span>Explore All Products</span>
+    <i class="fas fa-arrow-right"></i>
+  </button>
+</section>

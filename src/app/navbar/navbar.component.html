@@ -1,0 +1,87 @@
+<!-- navbar.component.html -->
+<nav appScrolling [class.navbar-solid]="isScrolled">
+  <div class="navbar-container">
+    <!-- Logo -->
+    <div class="navbar-logo">
+      <h1 routerLink="/">
+        <i class="fas fa-store"></i>
+        <span>Shopping Mall</span>
+      </h1>
+    </div>
+
+    <!-- Account Section -->
+    <div class="account">
+      @if (!isLoggedIn) {
+        <button class="btn-signup" (click)="showRegister()">
+          <i class="fas fa-user-plus"></i>
+          <span>Create Account</span>
+        </button>
+        <button class="btn-signin" (click)="signInForm()">
+          <i class="fas fa-sign-in-alt"></i>
+          <span>Sign In</span>
+        </button>
+      } @else {
+        <button class="btn-profile" routerLink="/profile">
+          <img [src]="userImg" alt="Profile" class="profile-img" />
+          <span class="profile-name">{{ userName }}</span>
+        </button>
+        <button class="btn-cart" routerLink="/cart">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-badge">{{cartCount}}</span>
+        </button>
+        <button class="btn-signout" (click)="signOut()">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Sign Out</span>
+        </button>
+      }
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" [class.open]="isMobileMenuOpen">
+    @if (!isLoggedIn) {
+      <button class="btn-signup mobile" (click)="showRegister()">
+        <i class="fas fa-user-plus"></i>
+        <span>Create Account</span>
+      </button>
+      <button class="btn-signin mobile" (click)="signInForm()">
+        <i class="fas fa-sign-in-alt"></i>
+        <span>Sign In</span>
+      </button>
+    } @else {
+      <button class="btn-profile mobile" routerLink="/profile">
+        <img [src]="userImg" alt="Profile" />
+        <span>{{ userName }}</span>
+      </button>
+      <button class="btn-cart mobile" routerLink="/cart">
+  <i class="fas fa-shopping-cart"></i>
+          <span class="cart-badge">{{cartCount}}</span>
+        </button>
+      <button class="btn-signout mobile" (click)="signOut()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Sign Out</span>
+      </button>
+    }
+  </div>
+</nav>
+
+<!-- Sign In Modal -->
+@if (isSignShow) {
+  <app-sign-in
+    (closeEmit)="closeForm($event)"
+    (changeEmit)="showRegister()"
+    (loggedEmit)="loggedIn($event)"
+  ></app-sign-in>
+}
+
+<!-- Sign Up Modal -->
+@if (isRegisterShow) {
+  <app-sign-up
+    (closeEmit)="closeRegister($event)"
+  ></app-sign-up>
+}
