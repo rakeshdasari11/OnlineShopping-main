@@ -3,11 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BannerComponent } from './banner/banner.component';
-import { SeveralProductsComponent } from './several-products/several-products.component';
 import { ApiAreaService } from '../services/api-area.service';
 import { shopCards } from './shopCardData';
 import { ShopComponent } from '../shop/shop.component';
-import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-home',
@@ -16,9 +14,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     CommonModule,
     RouterModule,
     BannerComponent,
-    SeveralProductsComponent,
-    ShopComponent,
-    SidebarComponent
+    ShopComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
