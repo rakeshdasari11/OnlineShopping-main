@@ -40,7 +40,6 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    debugger
      this.cartService.itemCount$.subscribe(cnt => this.cartCount = cnt);
     this.profileInfoNav();
 
